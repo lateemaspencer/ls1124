@@ -54,7 +54,7 @@ docker compose up -d
 Add to your .env file
 
 ```
-DATABASE_URL="postgresql://postgres:postgres@localhost:5432/tool_rental"
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/ls1124"
 ```
 
 #### This setup provides:
