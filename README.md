@@ -117,12 +117,6 @@ src/
 - Consistent input sanitization
 - Protected query execution
 
-### Access Control
-
-- Role-Based Access Control (RBAC) implementation
-- Principle of least privilege enforcement
-- Centralized access pattern auditing
-
 ### 💡 Key Features
 
 ### Repository Pattern Benefits
