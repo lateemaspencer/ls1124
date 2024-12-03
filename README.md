@@ -75,6 +75,11 @@ pnpm prisma studio
 This should launch a browser automatically at
 http://localhost:5555/
 
+## Caching
+
+- There is React Query for Caching and optimistic updates.
+- You should see an icon at the bottom right of your browser (this represents the react query dev tools)
+
 ## 🏗️ Architecture Overview
 
 ### Core Design Principles
