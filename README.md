@@ -2,6 +2,9 @@
 
 A modern ls1124 system built with Next.js, TypeScript, Prisma, Knex and Docker.
 
+https://github.com/user-attachments/assets/1ee7b6aa-e0a0-445c-b755-4c4e656dd81e
+
+
 ## 📥 Installation
 
 ```bash
