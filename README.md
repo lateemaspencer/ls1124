@@ -138,4 +138,4 @@ src/
 - Accessibility compliance
 - Responsive design
 - Performance optimization
-- Light and Dard Theme
+- Light and Dark Theme
