@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "outDir": "dist",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["@prisma/client", "node", "jest", "@testing-library/jest-dom"],
+    "target": "ES2020",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "migrations",
+    "next-env.d.ts",
+    "prisma/**/*",
+    "reset.d.ts",
+    "seeds",
+    "src/**/*",
+    ".next/types/**/*.ts",
+    "jest.setup.ts"
+  ],
+  "exclude": ["node_modules"]
+}

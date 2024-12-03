@@ -1,0 +1,17 @@
+# .dockerignore
+node_modules
+.next
+.swc
+.git
+.env*
+.dockerignore
+Dockerfile
+docker-compose.yml
+README.md
+.gitignore
+*.log
+logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*

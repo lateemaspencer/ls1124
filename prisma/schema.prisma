@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+  binaryTargets = ["native", "darwin-arm64", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  // Uses connection pooling
+  url = env("POSTGRES_PRISMA_URL")
+  // Uses direct connection, ⚠️ make sure to keep this to `POSTGRES_URL_NON_POOLING`
+  // or you'll have dangling databases from migrations
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Tool {
+  id                  String @id @default(cuid())
+  code                String @unique
+  type                String
+  brand               String
+  rental              Rental[]
+  charge              Charge @relation(fields: [type], references: [toolType])
+  @@map("tools")
+}
+
+model Charge {
+  id                  String  @id @default(cuid())
+  toolType            String  @unique @map("tool_type")
+  dailyCharge         Float   @map("daily_charge")
+  weekdayCharge       Boolean @map("weekday_charge")
+  weekendCharge       Boolean @map("weekend_charge")
+  holidayCharge       Boolean @map("holiday_charge")
+  tools               Tool[]
+  @@map("charges")
+}
+
+model Rental {
+  id                  String @id @default(cuid())
+  toolCode            String @map("tool_code")
+  checkoutDate        DateTime @map("checkout_date") @db.Date
+  returnDate          DateTime @map("return_date") @db.Date
+  discountPercent     Float @map("discount_percent")
+  chargeableDays      Int @map("chargeable_days")
+  prediscountAmount   Float @map("prediscount_amount")
+  discountAmount      Float @map("discount_amount")
+  finalAmount         Float @map("final_amount")
+  createdAt           DateTime @default(now()) @map("created_at")
+  tool                Tool @relation(fields: [toolCode], references: [code], onDelete: Cascade)
+  @@map("rentals")
+}

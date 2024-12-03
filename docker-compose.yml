@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: ls1124
+      POSTGRES_HOST_AUTH_METHOD: trust
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    # environment:
+    #   PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+    #   PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - '8080:80'
+    depends_on:
+      - db
