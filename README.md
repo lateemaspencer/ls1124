@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛠️ LS1124 Application
 
-## Getting Started
+A modern ls1124 system built with Next.js, TypeScript, Prisma, Knex and Docker.
 
-First, run the development server:
+## 📥 Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Clone the repository
+git clone https://github.com/lateemaspencer/ls1124.git
+
+# Install dependencies
+pnpm install
+
+# Setup environment variables
+cp .env.example .env
+
+# Generate prisma file
+pnpm prisma generate
+
+# Run database migrations
+pnpm db:migrate
+
+# Run seed files
+pnpx knex seed:run
+
+# Start development server
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🐳 Docker Database Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### PostgreSQL Container and PGAdmin Container
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+docker compose up -d
+```
 
-## Learn More
+### Connecting to the Database
 
-To learn more about Next.js, take a look at the following resources:
+1. Access pgAdmin at http://localhost:5050
+2. Login with:
+   - Email: admin@admin.com
+   - Password: admin
+3. Add new server in pgAdmin:
+   - Name: ls1124
+   - Host: host.docker.internal
+   - Port: 5432
+   - Database: ls1124
+   - Username: postgres
+   - Password: postgres
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Environtmental Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add to your .env file
 
-## Deploy on Vercel
+```
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/tool_rental"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### This setup provides:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Isolated database environment
+- Web-based database management
+- Persistent data storage
+- Easy database administration
+
+## PRISMA VISUALIZATION TOOL
+
+### You can interact directly with the Prisma database and view your Schema by running
+
+```
+pnpm prisma studio
+```
+
+This should launch a browser automatically at
+http://localhost:5555/
+
+## 🏗️ Architecture Overview
+
+### Core Design Principles
+
+- 🔒 **Repository Pattern** for data access abstraction
+- 🎯 **Domain-Driven Design** for business logic organization
+- 🧪 **Test-Driven Development** approach
+- 🔄 **Clean Architecture** for separation of concerns
+
+### Project Structure
+
+```
+src/
+├── components/    # UI components
+├── dal/          # Data Access Layer (Repositories)
+├── lib/          # Shared utilities
+├── models/       # Domain models
+└── schemas/      # Validation schemas
+```
+
+## 🔒 Security Benefits
+
+### Data Access Security
+
+- Repositories abstract data access mechanisms
+- Centralized interface controls data modifications
+- Input validation and sanitization at repository level
+
+### SQL Injection Protection
+
+- Enforced parameterized queries
+- Consistent input sanitization
+- Protected query execution
+
+### Access Control
+
+- Role-Based Access Control (RBAC) implementation
+- Principle of least privilege enforcement
+- Centralized access pattern auditing
+
+### 💡 Key Features
+
+### Repository Pattern Benefits
+
+- Database agnostic implementation
+- Centralized caching strategies
+- Cross-cutting concerns management
+- Service Layer Architecture
+- Dependency injection for testability
+- Business rules encapsulation
+- Complex calculations handling
+
+### 🧪 Testing Strategy
+
+- Unit tests for business logic
+- Component tests for UI
+
+### 📱 UI/UX Features
+
+- Consistent design system
+- Accessibility compliance
+- Responsive design
+- Performance optimization
+- Light and Dard Theme
